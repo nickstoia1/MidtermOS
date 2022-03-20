@@ -1,0 +1,86 @@
+.section .data
+fizz:
+	.ascii "FIZZ\n"
+buzz:
+	.ascii "BUZZ\n" 
+fizzbuzz:
+	.ascii "FIZZBUZZ\n"
+stop:
+	.long 10
+counter:
+	.long 1
+five_count:
+	.long 1
+.section .text
+.globl _start
+
+_start:
+movl $1, %ebx # remainder for 3
+movl $0, %eax 
+start_loop: # start loop
+movl $0, %eax
+movl stop(,%eax,4), %edi
+movl counter(,%eax,4), %esi
+cmpl counter(,%eax,4), %edi # check to see if we’ve hit the end
+je loop_exit
+cmpl $3, %ebx
+je reset_three
+cmpl $5, five_count(,%eax,4)
+je reset_five
+addl $1, five_count(,%eax,4)
+incl %ebx
+jmp print_num
+
+reset_three:
+cmpl $5, five_count(,%eax,4)
+je print_fizzbuzz
+movl $1, %eax
+movl $1, %edi
+movl $fizz, %esi
+movl $5, %edx
+syscall
+movl $0, %eax
+addl $1, five_count(,%eax,4)
+movl $1, %ebx
+jmp start_loop
+
+reset_five:
+movl $1, %eax
+movl $1, %edi
+movl $buzz, %esi
+movl $5, %edx
+syscall
+movl $0, %eax
+movl $1, five_count(,%eax,4)
+incl %ebx
+
+jmp start_loop
+
+print_fizzbuzz:
+movl $1, %eax
+movl $1, %edi
+movl $fizzbuzz, %esi
+movl $9, %edx
+syscall
+movl $0, %eax
+movl $1, %ebx
+movl $1, five_count(,%eax,4)
+addl $1, counter(,%eax,4)
+jmp start_loop
+
+print_num:
+movl counter(,%eax,4), %ecx
+addl $48, %ecx
+movl $0, %eax
+movl $1, %eax
+movl $1, %edi
+movl %ecx, %esi
+movl $4, %edx
+syscall
+movl $0, %eax
+addl $1, counter(,%eax,4)
+jmp start_loop
+
+loop_exit:
+movl $1, %eax #1 is the exit() syscall
+int $0x80
