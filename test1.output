@@ -1,3 +1,7 @@
-The line is: heyyy
-
-this is a test 55
+EMPTY
+(AAAA,Head,Tail)
+(BBBB,Head,AAAA),(AAAA,BBBB,Tail)
+(BBBB,Head,AAAA),(AAAA,BBBB,CCCC),(CCCC,AAAA,Tail)
+(AAAA,Head,CCCC),(CCCC,AAAA,Tail)
+(CCCC,Head,Tail)
+EMPTY

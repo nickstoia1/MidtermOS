@@ -1,2 +1,15 @@
-heyyy
-
+14
+del CCCC
+print
+addhead AAAA
+print
+addhead BBBB
+print
+addtail CCCC
+print
+del BBBB
+print
+del AAAA
+print
+del CCCC
+print
