@@ -69,10 +69,10 @@ void deleteNodes(struct linkedlist** head, char key[]){
 	}
 }
 
-int main()
+int main(int argc, char *argv[])
 {
-   FILE *in_file  = fopen("test1.input", "r"); // read only
-   FILE *out_file = fopen("test1.output", "w"); // write only 
+   FILE *in_file  = fopen(argv[1], "r"); // read only
+   FILE *out_file = fopen(argv[2], "w"); // write only 
    // test for files not existing
    if (in_file == NULL || out_file == NULL)
    {
@@ -80,16 +80,19 @@ int main()
 
    }
    struct linkedlist* head = NULL;
-   int x;
-   fscanf(in_file, "%d",&x);
-   int i =0;
-   while (i<x){
+   int x=1;
+   //fscanf(in_file, "%d",&x);
+   //int i =0;
+   while (x==1){
 	char line[100];
-	fscanf(in_file, "%100s", line);
+	x=fscanf(in_file, "%100s", line);
+	if (x!=1){
+		break;
+	}
 	if (strcmp(line, "addhead")==0){
 		if (head ==NULL){
 			char line1[100];
-			fscanf(in_file, "%s",line1);
+			fscanf(in_file, " %[^\n]s",line1);
 			struct linkedlist *first= (struct linkedlist*)malloc(sizeof(struct linkedlist));
 			strcpy((*first).key, line1);
 			first->next= NULL;
@@ -98,7 +101,7 @@ int main()
 		}
 		else{
 			char line2[100];
-			fscanf(in_file, "%s",line2);
+			fscanf(in_file,  " %[^\n]s",line2);
 			struct linkedlist *second= (struct linkedlist*)malloc(sizeof(struct linkedlist));
 			strcpy((*second).key, line2);
 			second->next = head;
@@ -113,7 +116,7 @@ int main()
 	else if(strcmp(line, "addtail")==0){
 		if (head ==NULL){
                         char line1[100];
-                        fscanf(in_file, "%s",line1);
+                        fscanf(in_file, " %[^\n]s",line1);
                         struct linkedlist *first= (struct linkedlist*)malloc(sizeof(struct linkedlist));
                         strcpy((*first).key, line1);
                         first->next= NULL;
@@ -122,7 +125,7 @@ int main()
                 }
 		else{
                         char line2[100];
-                        fscanf(in_file, "%s",line2);
+                        fscanf(in_file, " %[^\n]s",line2);
                         struct linkedlist *second= (struct linkedlist*)malloc(sizeof(struct linkedlist));
                         strcpy((*second).key, line2);
                         second->next = NULL;
@@ -131,13 +134,13 @@ int main()
                 }
 	}
 	else if(strcmp(line, "del")==0){
-		char line2[100];
-                fscanf(in_file, "%s",line2);
+		char line2[2000];
+                fscanf(in_file,  " %[^\n]",line2);
 		if (head != NULL){
                 	deleteNodes(&head,line2);
 		}
 	}
-	i=i+1;
+	//i=i+1;
    }
    return 0;
 }

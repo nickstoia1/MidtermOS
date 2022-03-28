@@ -1,0 +1,21 @@
+del Bottle Opener
+print
+print
+addhead Heyyyyy
+print
+addhead hoooooo
+addtail baby
+print
+del baby
+del hoooooo
+print
+del box
+print
+addhead taco
+print
+addhead taco
+addtail taco
+print
+del taco
+print
+

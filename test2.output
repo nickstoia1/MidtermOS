@@ -1,0 +1,9 @@
+EMPTY
+EMPTY
+(Heyyyyy,Head,Tail)
+(hoooooo,Head,Heyyyyy),(Heyyyyy,hoooooo,baby),(baby,Heyyyyy,Tail)
+(Heyyyyy,Head,Tail)
+(Heyyyyy,Head,Tail)
+(taco,Head,Heyyyyy),(Heyyyyy,taco,Tail)
+(taco,Head,taco),(taco,taco,Heyyyyy),(Heyyyyy,taco,taco),(taco,Heyyyyy,Tail)
+(Heyyyyy,Head,Tail)

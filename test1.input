@@ -1,15 +1,18 @@
-14
-del CCCC
+print 
+addtail Nick Stoia
+print 
+addtail Rafal J
+print 
+addtail Nate Reese
+print 
+del Nate Reese
 print
-addhead AAAA
+addhead Fred Dog
 print
-addhead BBBB
+del Fred Dog
+print 
+del Nick Stoia
 print
-addtail CCCC
+del Rafal J
 print
-del BBBB
-print
-del AAAA
-print
-del CCCC
-print
+

@@ -1,7 +1,9 @@
 EMPTY
-(AAAA,Head,Tail)
-(BBBB,Head,AAAA),(AAAA,BBBB,Tail)
-(BBBB,Head,AAAA),(AAAA,BBBB,CCCC),(CCCC,AAAA,Tail)
-(AAAA,Head,CCCC),(CCCC,AAAA,Tail)
-(CCCC,Head,Tail)
+(Nick Stoia,Head,Tail)
+(Nick Stoia,Head,Rafal J),(Rafal J,Nick Stoia,Tail)
+(Nick Stoia,Head,Rafal J),(Rafal J,Nick Stoia,Nate Reese),(Nate Reese,Rafal J,Tail)
+(Nick Stoia,Head,Rafal J),(Rafal J,Nick Stoia,Tail)
+(Fred Dog,Head,Nick Stoia),(Nick Stoia,Fred Dog,Rafal J),(Rafal J,Nick Stoia,Tail)
+(Nick Stoia,Head,Rafal J),(Rafal J,Nick Stoia,Tail)
+(Rafal J,Head,Tail)
 EMPTY
