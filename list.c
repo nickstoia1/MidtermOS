@@ -5,7 +5,7 @@
 struct linkedlist{
    struct linkedlist* prev;
    struct linkedlist* next;
-   char key[100];
+   char key[2000];
 } ;
 
 void printList(struct linkedlist* head, FILE *out_file){
@@ -15,20 +15,20 @@ void printList(struct linkedlist* head, FILE *out_file){
    }
    char prev[100];
    if (head->prev == NULL){
-	strcpy(prev, "Head");
+	strcpy(prev, "HEAD");
    }
    else{
 	strcpy(prev,head->prev->key);
    }
    char next[100];
    if (head->next == NULL){
-        strcpy(next, "Tail");
+        strcpy(next, "TAIL");
    }
    else{
         strcpy(next, head->next->key);
    }
    fprintf(out_file, "(%s,%s,%s)",head->key,prev,next);
-   if (strcmp(next,"Tail")!=0){
+   if (strcmp(next,"TAIL")!=0){
 	fprintf(out_file, ",");
 	printList(head->next, out_file);
    }
@@ -47,26 +47,52 @@ struct linkedlist* getTail(struct linkedlist** head){
 void deleteNodes(struct linkedlist** head, char key[]){
 	if(strcmp((*head)->key, key)==0){
 		if((*head)->prev == NULL && (*head)->next == NULL){
+			struct linkedlist *tmp;
+                        tmp=*head;
 			*head = NULL;
+			free(tmp);
 			return;
 		}
 		else if((*head)->prev == NULL){
+			struct linkedlist *tmp;
+                        tmp=*head;
 			*head = (*head)->next;
 			(*head)->prev = NULL;
+			free(tmp);
 			deleteNodes(head,key);
 		}
 		else if((*head)->next==NULL){
+			struct linkedlist *tmp;
+                        tmp=*head;
 			(*head)->prev->next = NULL;
+			free(tmp);
 			return;
 		}
 		else {
-			(*head)->prev->next = (*head)->next;
-			(*head)->next->prev = (*head)->prev;
+			struct linkedlist *tmp;
+			tmp=*head;
+			(*head)= tmp->next;
+			(*head)->prev=tmp->prev;
+			free(tmp);
 		}
 	}
+
 	if ((*head)->next != NULL){
 		deleteNodes(&((*head)->next), key);
 	}
+}
+
+void freeList(struct linkedlist* head)
+{
+   struct linkedlist* tmp;
+
+   while (head != NULL)
+    {
+       tmp = head;
+       head = head->next;
+       free(tmp);
+    }
+
 }
 
 int main(int argc, char *argv[])
@@ -79,6 +105,9 @@ int main(int argc, char *argv[])
      printf("Error! Could not open file\n");
 
    }
+   char empty[]="EMPTY";
+   char headc[]="HEAD";
+   char tail[]="TAIL";
    struct linkedlist* head = NULL;
    int x=1;
    //fscanf(in_file, "%d",&x);
@@ -90,48 +119,49 @@ int main(int argc, char *argv[])
 		break;
 	}
 	if (strcmp(line, "addhead")==0){
-		if (head ==NULL){
-			char line1[100];
-			fscanf(in_file, " %[^\n]s",line1);
-			struct linkedlist *first= (struct linkedlist*)malloc(sizeof(struct linkedlist));
-			strcpy((*first).key, line1);
-			first->next= NULL;
-			first->prev= NULL;
-			head = first;
-		}
-		else{
-			char line2[100];
-			fscanf(in_file,  " %[^\n]s",line2);
-			struct linkedlist *second= (struct linkedlist*)malloc(sizeof(struct linkedlist));
-			strcpy((*second).key, line2);
-			second->next = head;
-			second->prev = NULL;
-			head->prev = second;
-			head = second;
+		char line1[2000];
+                fscanf(in_file, " %[^\n]s",line1);
+		if (strcmp(headc,line1)!=0 && strcmp(tail,line1)!=0 && strcmp(empty, line1)!=0){
+
+			if (head ==NULL){
+				struct linkedlist *first= (struct linkedlist*)malloc(sizeof(struct linkedlist));
+				strcpy((*first).key, line1);
+				first->next= NULL;
+				first->prev= NULL;
+				head = first;
+			}
+			else{
+				struct linkedlist *second= (struct linkedlist*)malloc(sizeof(struct linkedlist));
+				strcpy((*second).key, line1);
+				second->next = head;
+				second->prev = NULL;
+				head->prev = second;
+				head = second;
+			}
 		}
 	}
 	else if(strcmp(line, "print")==0){
 		printList(head, out_file);
 	}
 	else if(strcmp(line, "addtail")==0){
-		if (head ==NULL){
-                        char line1[100];
-                        fscanf(in_file, " %[^\n]s",line1);
-                        struct linkedlist *first= (struct linkedlist*)malloc(sizeof(struct linkedlist));
-                        strcpy((*first).key, line1);
-                        first->next= NULL;
-                        first->prev= NULL;
-                        head = first;
-                }
-		else{
-                        char line2[100];
-                        fscanf(in_file, " %[^\n]s",line2);
-                        struct linkedlist *second= (struct linkedlist*)malloc(sizeof(struct linkedlist));
-                        strcpy((*second).key, line2);
-                        second->next = NULL;
-                        second->prev = getTail(&head);
-                        second->prev->next = second;
-                }
+		char line1[2000];
+                fscanf(in_file, " %[^\n]s",line1);
+		if (strcmp(headc,line1)!=0 && strcmp(tail,line1)!=0 && strcmp(empty, line1)!=0){
+			if (head ==NULL){
+                        	struct linkedlist *first= (struct linkedlist*)malloc(sizeof(struct linkedlist));
+                        	strcpy((*first).key, line1);
+                        	first->next= NULL;
+                        	first->prev= NULL;
+                        	head = first;
+                	}
+			else{
+                        	struct linkedlist *second= (struct linkedlist*)malloc(sizeof(struct linkedlist));
+                        	strcpy((*second).key, line1);
+                        	second->next = NULL;
+                        	second->prev = getTail(&head);
+                        	second->prev->next = second;
+                	}
+		}
 	}
 	else if(strcmp(line, "del")==0){
 		char line2[2000];
@@ -142,5 +172,8 @@ int main(int argc, char *argv[])
 	}
 	//i=i+1;
    }
+   fclose(in_file);
+   fclose(out_file);
+   freeList(head);
    return 0;
 }

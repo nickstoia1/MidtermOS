@@ -1,21 +1,34 @@
 del Bottle Opener
 print
+addhead 2
 print
-addhead Heyyyyy
-print
-addhead hoooooo
-addtail baby
+addhead 1
+addtail 3
 print
 del baby
 del hoooooo
+print
+del 2
+print
+del 2
+print
+del 3
 print
 del box
 print
 addhead taco
 print
+del taco
+print
 addhead taco
 addtail taco
 print
 del taco
+print
+del 1
+print
+addtail I want some tacos
+print
+del I want some tacos
 print
 

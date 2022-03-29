@@ -2,6 +2,9 @@ print
 addtail Nick Stoia
 print 
 addtail Rafal J
+addhead EMPTY
+addhead TAIL
+addhead HEAD
 print 
 addtail Nate Reese
 print 
@@ -11,8 +14,22 @@ addhead Fred Dog
 print
 del Fred Dog
 print 
+addtail EMPTY
+addtail TAIL
+addtail HEAD
 del Nick Stoia
 print
 del Rafal J
 print
-
+addhead Billy Bob
+print
+addtail Bobby Bill
+print
+addhead Polly Pooo
+print
+addtail Nelly
+print
+addhead Looooook
+print
+del Polly Pooo
+print

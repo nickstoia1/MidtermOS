@@ -1,9 +1,15 @@
 EMPTY
+(2,HEAD,TAIL)
+(1,HEAD,2),(2,1,3),(3,2,TAIL)
+(1,HEAD,2),(2,1,3),(3,2,TAIL)
+(1,HEAD,3),(3,1,TAIL)
+(1,HEAD,3),(3,1,TAIL)
+(1,HEAD,TAIL)
+(1,HEAD,TAIL)
+(taco,HEAD,1),(1,taco,TAIL)
+(1,HEAD,TAIL)
+(taco,HEAD,1),(1,taco,taco),(taco,1,TAIL)
+(1,HEAD,TAIL)
 EMPTY
-(Heyyyyy,Head,Tail)
-(hoooooo,Head,Heyyyyy),(Heyyyyy,hoooooo,baby),(baby,Heyyyyy,Tail)
-(Heyyyyy,Head,Tail)
-(Heyyyyy,Head,Tail)
-(taco,Head,Heyyyyy),(Heyyyyy,taco,Tail)
-(taco,Head,taco),(taco,taco,Heyyyyy),(Heyyyyy,taco,taco),(taco,Heyyyyy,Tail)
-(Heyyyyy,Head,Tail)
+(I want some tacos,HEAD,TAIL)
+EMPTY
