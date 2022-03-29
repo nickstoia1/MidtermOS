@@ -120,7 +120,7 @@ int main(int argc, char *argv[])
 	}
 	if (strcmp(line, "addhead")==0){
 		char line1[2000];
-                fscanf(in_file, " %[^\n]s",line1);
+                fscanf(in_file, " %[^\n]",line1);
 		if (strcmp(headc,line1)!=0 && strcmp(tail,line1)!=0 && strcmp(empty, line1)!=0){
 
 			if (head ==NULL){
@@ -145,7 +145,7 @@ int main(int argc, char *argv[])
 	}
 	else if(strcmp(line, "addtail")==0){
 		char line1[2000];
-                fscanf(in_file, " %[^\n]s",line1);
+                fscanf(in_file, " %[^\n]",line1);
 		if (strcmp(headc,line1)!=0 && strcmp(tail,line1)!=0 && strcmp(empty, line1)!=0){
 			if (head ==NULL){
                         	struct linkedlist *first= (struct linkedlist*)malloc(sizeof(struct linkedlist));
