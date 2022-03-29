@@ -6,7 +6,7 @@ buzz:
 fizzbuzz:
 	.ascii "FIZZBUZZ\n"
 stop:
-	.long 1001
+	.long 101
 counter:
 	.long 1
 three_count:
