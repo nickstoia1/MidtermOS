@@ -1,2 +1,2 @@
-(I love,Head,You),(You,I love,Baby),(Baby,You,Tail)
-(You,Head,Baby),(Baby,You,Tail)
+(I love,HEAD,You),(You,I love,Baby),(Baby,You,TAIL)
+(You,HEAD,Baby),(Baby,You,TAIL)
