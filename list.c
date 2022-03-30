@@ -13,14 +13,14 @@ void printList(struct linkedlist* head, FILE *out_file){
 	fprintf(out_file, "EMPTY\n");
 	return;
    }
-   char prev[100];
+   char prev[2000];
    if (head->prev == NULL){
 	strcpy(prev, "HEAD");
    }
    else{
 	strcpy(prev,head->prev->key);
    }
-   char next[100];
+   char next[2000];
    if (head->next == NULL){
         strcpy(next, "TAIL");
    }
